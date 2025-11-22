@@ -14,7 +14,7 @@ export default function SnowflakePage() {
     const sequence = BigInt(Math.floor(Math.random() * 4096));
 
     const id =
-      (timestamp << 22n) | (datacenterId << 17n) | (workerId << 12n) | sequence;
+      (timestamp << BigInt(22)) | (datacenterId << BigInt(17)) | (workerId << BigInt(12)) | sequence;
     return id.toString();
   };
 

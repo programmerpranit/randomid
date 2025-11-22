@@ -11,19 +11,19 @@ export default function Base62Page() {
   const generateBase62 = () => {
     const randomValue = BigInt(
       "0x" +
-        Array.from(crypto.getRandomValues(new Uint8Array(8)))
-          .map((b) => b.toString(16).padStart(2, "0"))
-          .join("")
+      Array.from(crypto.getRandomValues(new Uint8Array(8)))
+        .map((b) => b.toString(16).padStart(2, "0"))
+        .join("")
     );
 
     let result = "";
     let num = randomValue;
 
-    if (num === 0n) return "0";
+    if (num === BigInt(0)) return "0";
 
-    while (num > 0n) {
-      result = base62Chars[Number(num % 62n)] + result;
-      num = num / 62n;
+    while (num > BigInt(0)) {
+      result = base62Chars[Number(num % BigInt(62))] + result;
+      num = num / BigInt(62);
     }
 
     return result;

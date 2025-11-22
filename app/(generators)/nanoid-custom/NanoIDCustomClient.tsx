@@ -3,7 +3,7 @@
 import { customAlphabet } from "nanoid";
 import TitleSection from "../../components/TitleSection";
 import GeneratorDisplayWithInput from "../../components/GeneratorDisplayWithInput";
-import InfoSection from "../../components/InfoSection";
+import DetailedInfoSection from "../../components/DetailedInfoSection";
 
 export default function NanoIDCustomClient() {
   return (
@@ -39,9 +39,21 @@ export default function NanoIDCustomClient() {
           },
         ]}
       />
-      <InfoSection
-        title="About NanoID (Custom)"
-        info="NanoID supports custom alphabets and lengths. You can specify your own character set and desired length. Custom NanoIDs are useful when you need specific character sets for compatibility or branding purposes. The alphabet determines which characters can appear in the ID, and the length determines how many characters the ID will have."
+      <DetailedInfoSection
+        about="NanoID supports custom alphabets and lengths. You can specify your own character set and desired length. Custom NanoIDs are useful when you need specific character sets for compatibility, branding, or system requirements. The alphabet determines which characters can appear in the ID, and the length determines how many characters the ID will have. Custom alphabets allow you to create IDs that match specific formats, avoid certain characters, or use only alphanumeric characters for case-insensitive systems."
+        useCases={[
+          "Case-insensitive systems (lowercase only)",
+          "Numeric-only IDs for compatibility",
+          "Custom character sets for branding",
+          "Avoiding specific characters (e.g., no hyphens)",
+          "Legacy system compatibility",
+          "Custom length requirements"
+        ]}
+        howToGenerate={{
+          library: "nanoid",
+          npmPackage: "npm install nanoid",
+          codeExample: `import { customAlphabet } from 'nanoid';\n\n// Custom alphabet (lowercase + numbers)\nconst alphabet = '0123456789abcdefghijklmnopqrstuvwxyz';\nconst customNanoid = customAlphabet(alphabet, 21);\nconst id = customNanoid();\nconsole.log(id); // e.g., 'k3j9h2f8m1n5p7q4r6s2t0'`,
+        }}
       />
     </>
   );

@@ -3,7 +3,7 @@
 import Haikunator from "haikunator";
 import TitleSection from "../../components/TitleSection";
 import GeneratorDisplay from "../../components/GeneratorDisplay";
-import InfoSection from "../../components/InfoSection";
+import DetailedInfoSection from "../../components/DetailedInfoSection";
 
 export default function HaikunatorClient() {
   const haikunator = new Haikunator();
@@ -18,9 +18,21 @@ export default function HaikunatorClient() {
         label="Generated Haikunator ID"
         generateFn={() => haikunator.haikunate()}
       />
-      <InfoSection
-        title="About Haikunator ID"
-        info="Haikunator generates memorable, haiku-like identifiers in the format 'adjective-noun-number'. These IDs are human-readable, easy to remember, and provide a friendly alternative to technical identifiers. They're popular in cloud platforms like Heroku for resource naming."
+      <DetailedInfoSection
+        about="Haikunator generates memorable, haiku-like identifiers in the format 'adjective-noun-number'. These IDs are human-readable, easy to remember, and provide a friendly alternative to technical identifiers. They're popular in cloud platforms like Heroku for resource naming. Haikunator IDs combine two words (adjective and noun) with a number, creating identifiers that are both unique and memorable, making them ideal for user-facing resource names."
+        useCases={[
+          "Cloud platform resource naming (Heroku-style)",
+          "User-friendly application identifiers",
+          "Development and staging environment names",
+          "Human-readable unique identifiers",
+          "Friendly error codes and identifiers",
+          "Resource names in developer tools"
+        ]}
+        howToGenerate={{
+          library: "haikunator",
+          npmPackage: "npm install haikunator",
+          codeExample: `import Haikunator from 'haikunator';\n\nconst haikunator = new Haikunator();\nconst id = haikunator.haikunate();\nconsole.log(id); // e.g., 'winter-waterfall-1234'`,
+        }}
       />
     </>
   );

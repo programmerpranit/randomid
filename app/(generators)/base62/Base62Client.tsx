@@ -2,7 +2,7 @@
 
 import TitleSection from "../../components/TitleSection";
 import GeneratorDisplay from "../../components/GeneratorDisplay";
-import InfoSection from "../../components/InfoSection";
+import DetailedInfoSection from "../../components/DetailedInfoSection";
 
 export default function Base62Client() {
   const base62Chars =
@@ -39,9 +39,22 @@ export default function Base62Client() {
         label="Generated Base62 ID"
         generateFn={generateBase62}
       />
-      <InfoSection
-        title="About Base62 ID"
-        info="Base62 encoding uses 62 characters (0-9, A-Z, a-z) to represent numbers. Base62 IDs are compact, URL-safe, and use only alphanumeric characters. They're case-sensitive and provide a good balance between compactness and readability."
+      <DetailedInfoSection
+        about="Base62 encoding uses 62 characters (0-9, A-Z, a-z) to represent numbers. Base62 IDs are compact, URL-safe, and use only alphanumeric characters. They're case-sensitive and provide a good balance between compactness and readability. Base62 is the highest base that uses only alphanumeric characters and is commonly used for URL shortening and compact identifier generation."
+        useCases={[
+          "URL shortening services",
+          "Compact unique identifiers",
+          "URL-safe IDs with maximum character set",
+          "Case-sensitive identifier systems",
+          "Short link generation",
+          "Systems requiring alphanumeric-only IDs"
+        ]}
+        howToGenerate={{
+          library: "Native implementation or base62 library",
+          npmPackage: "npm install base62 (optional - can implement natively)",
+          codeExample: `// Native implementation\nconst base62Chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';\nconst randomValue = BigInt('0x' + /* random hex */);\n// Convert to Base62...`,
+          note: "Note: Base62 encoding can be implemented natively or using libraries like 'base62'."
+        }}
       />
     </>
   );

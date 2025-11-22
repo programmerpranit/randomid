@@ -2,7 +2,7 @@
 
 import TitleSection from "../../components/TitleSection";
 import GeneratorDisplay from "../../components/GeneratorDisplay";
-import InfoSection from "../../components/InfoSection";
+import DetailedInfoSection from "../../components/DetailedInfoSection";
 
 export default function RandomTimestampClient() {
   const generateRandomTimestamp = () => {
@@ -23,9 +23,21 @@ export default function RandomTimestampClient() {
         label="Generated Random Timestamp"
         generateFn={generateRandomTimestamp}
       />
-      <InfoSection
-        title="About Random Timestamp"
-        info="Random timestamps are Unix timestamps (milliseconds since epoch) generated randomly within a specified range. They can be used as unique identifiers when you need time-like values but don't want to expose actual creation times. Useful for testing, anonymization, or when you need timestamp-like identifiers."
+      <DetailedInfoSection
+        about="Random timestamps are Unix timestamps (milliseconds since epoch) generated randomly within a specified range. They can be used as unique identifiers when you need time-like values but don't want to expose actual creation times. Random timestamps maintain the numeric format of timestamps while providing randomness, making them useful for testing, anonymization, or when you need timestamp-like identifiers without revealing actual temporal information."
+        useCases={[
+          "Testing and development",
+          "Data anonymization",
+          "Timestamp-like identifiers without temporal exposure",
+          "Mock data generation",
+          "Privacy-preserving identifiers",
+          "Systems requiring numeric timestamp format"
+        ]}
+        howToGenerate={{
+          library: "Native JavaScript",
+          npmPackage: "N/A - Native implementation",
+          codeExample: `// Native implementation\nconst start = new Date('2000-01-01').getTime();\nconst end = Date.now();\nconst randomTime = Math.floor(Math.random() * (end - start) + start);\nconst timestampId = randomTime.toString();`,
+        }}
       />
     </>
   );

@@ -3,7 +3,7 @@
 import { nanoid } from "nanoid";
 import TitleSection from "../../components/TitleSection";
 import GeneratorDisplayWithInput from "../../components/GeneratorDisplayWithInput";
-import InfoSection from "../../components/InfoSection";
+import DetailedInfoSection from "../../components/DetailedInfoSection";
 
 export default function PrefixedClient() {
   return (
@@ -39,9 +39,21 @@ export default function PrefixedClient() {
           },
         ]}
       />
-      <InfoSection
-        title="About Prefixed ID"
-        info="Prefixed IDs combine a custom prefix with a random suffix. They're useful for categorizing identifiers, adding branding, or creating namespaced IDs. The prefix helps identify the type or source of the ID, while the random suffix ensures uniqueness. Common patterns include 'USER-', 'ORDER-', 'TXN-' etc."
+      <DetailedInfoSection
+        about="Prefixed IDs combine a custom prefix with a random suffix. They're useful for categorizing identifiers, adding branding, or creating namespaced IDs. The prefix helps identify the type or source of the ID, while the random suffix ensures uniqueness. Common patterns include 'USER-', 'ORDER-', 'TXN-' etc. Prefixed IDs make it easy to identify the type or category of an identifier at a glance, which is helpful for debugging, logging, and system organization."
+        useCases={[
+          "Categorizing identifiers by type (USER, ORDER, etc.)",
+          "Adding branding to IDs",
+          "Creating namespaced identifiers",
+          "Database IDs with type prefixes",
+          "API identifiers with resource type",
+          "System organization and debugging"
+        ]}
+        howToGenerate={{
+          library: "nanoid",
+          npmPackage: "npm install nanoid",
+          codeExample: `import { nanoid } from 'nanoid';\n\nconst prefix = 'USER';\nconst randomPart = nanoid(12);\nconst prefixedId = \`\${prefix}-\${randomPart}\`;\nconsole.log(prefixedId); // e.g., 'USER-V1StGXR8_Z5j'`,
+        }}
       />
     </>
   );

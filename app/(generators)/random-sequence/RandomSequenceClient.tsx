@@ -2,7 +2,7 @@
 
 import TitleSection from "../../components/TitleSection";
 import GeneratorDisplayWithInput from "../../components/GeneratorDisplayWithInput";
-import InfoSection from "../../components/InfoSection";
+import DetailedInfoSection from "../../components/DetailedInfoSection";
 
 export default function RandomSequenceClient() {
   return (
@@ -43,9 +43,22 @@ export default function RandomSequenceClient() {
           },
         ]}
       />
-      <InfoSection
-        title="About Random Sequence"
-        info="Random sequences are strings of random alphanumeric characters. They're simple, easy to generate, and useful for creating unique identifiers, codes, or tokens. The length and character set can be customized based on your requirements. Commonly used for verification codes, access tokens, and simple unique IDs."
+      <DetailedInfoSection
+        about="Random sequences are strings of random alphanumeric characters. They're simple, easy to generate, and useful for creating unique identifiers, codes, or tokens. The length and character set can be customized based on your requirements. Random sequences provide flexibility in character selection and length, making them suitable for various use cases from simple codes to complex identifiers. They use cryptographically secure random number generation for security."
+        useCases={[
+          "Verification codes and OTPs",
+          "Access tokens and API keys",
+          "Simple unique identifiers",
+          "Custom character set requirements",
+          "Promo codes and coupon codes",
+          "Temporary access codes",
+          "Flexible ID generation"
+        ]}
+        howToGenerate={{
+          library: "Native Web Crypto API",
+          npmPackage: "N/A - Native implementation",
+          codeExample: `// Native implementation\nconst length = 12;\nconst chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';\nconst bytes = new Uint8Array(length);\ncrypto.getRandomValues(bytes);\nlet result = '';\nfor (let i = 0; i < length; i++) {\n  result += chars[bytes[i] % chars.length];\n}`,
+        }}
       />
     </>
   );

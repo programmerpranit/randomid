@@ -3,7 +3,7 @@
 import { nanoid } from "nanoid";
 import TitleSection from "../../components/TitleSection";
 import GeneratorDisplayWithInput from "../../components/GeneratorDisplayWithInput";
-import InfoSection from "../../components/InfoSection";
+import DetailedInfoSection from "../../components/DetailedInfoSection";
 
 export default function ShortIDClient() {
   return (
@@ -32,9 +32,22 @@ export default function ShortIDClient() {
           },
         ]}
       />
-      <InfoSection
-        title="About ShortID"
-        info="ShortID is a compact unique identifier, typically 8-12 characters long. It's generated using a URL-safe alphabet and provides a good balance between uniqueness and brevity. ShortIDs are useful for user-facing identifiers, short URLs, or when you need compact but unique identifiers. You can customize the length to suit your needs (1-100 characters)."
+      <DetailedInfoSection
+        about="ShortID is a compact unique identifier, typically 8-12 characters long. It's generated using a URL-safe alphabet and provides a good balance between uniqueness and brevity. ShortIDs are useful for user-facing identifiers, short URLs, or when you need compact but unique identifiers. The length can be customized to suit your needs, with shorter IDs being more readable but having lower uniqueness guarantees. This implementation uses NanoID with a custom length."
+        useCases={[
+          "User-facing identifiers and codes",
+          "Short URL slugs and links",
+          "Invite codes and referral codes",
+          "Compact API identifiers",
+          "Human-readable unique IDs",
+          "Systems requiring short but unique identifiers"
+        ]}
+        howToGenerate={{
+          library: "nanoid",
+          npmPackage: "npm install nanoid",
+          codeExample: `import { nanoid } from 'nanoid';\n// Generate short ID with custom length\nconst shortId = nanoid(8);\nconsole.log(shortId); // e.g., 'V1StGXR8'`,
+          note: "Note: Shorter IDs have lower uniqueness guarantees. Use longer IDs (12-21 characters) for higher collision resistance."
+        }}
       />
     </>
   );

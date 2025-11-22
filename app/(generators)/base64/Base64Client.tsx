@@ -2,7 +2,7 @@
 
 import TitleSection from "../../components/TitleSection";
 import GeneratorDisplay from "../../components/GeneratorDisplay";
-import InfoSection from "../../components/InfoSection";
+import DetailedInfoSection from "../../components/DetailedInfoSection";
 
 export default function Base64Client() {
   const generateBase64 = () => {
@@ -24,9 +24,21 @@ export default function Base64Client() {
         label="Generated Base64 ID"
         generateFn={generateBase64}
       />
-      <InfoSection
-        title="About Base64 ID"
-        info="Base64 encoding uses 64 characters (A-Z, a-z, 0-9, +, /) to represent binary data. Base64 IDs are compact and efficient, using approximately 4/3 the size of the original binary data. They're widely used in web applications, APIs, and data transmission."
+      <DetailedInfoSection
+        about="Base64 encoding uses 64 characters (A-Z, a-z, 0-9, +, /) to represent binary data. Base64 IDs are compact and efficient, using approximately 4/3 the size of the original binary data. They're widely used in web applications, APIs, and data transmission. Base64 is defined in RFC 4648 and is commonly used for encoding binary data in text-based protocols like JSON, XML, and URLs (with URL-safe variants)."
+        useCases={[
+          "Encoding binary data in JSON/XML",
+          "API responses and data transmission",
+          "Email attachments (MIME encoding)",
+          "Data URLs and embedded resources",
+          "Web storage and cookies",
+          "General-purpose binary-to-text encoding"
+        ]}
+        howToGenerate={{
+          library: "Native JavaScript (btoa/atob)",
+          npmPackage: "N/A - Native implementation",
+          codeExample: `// Native implementation\nconst bytes = new Uint8Array(18);\ncrypto.getRandomValues(bytes);\nconst binary = Array.from(bytes)\n  .map(b => String.fromCharCode(b))\n  .join('');\nconst base64Id = btoa(binary);`,
+        }}
       />
     </>
   );

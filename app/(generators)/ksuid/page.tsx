@@ -1,6 +1,6 @@
 "use client";
 
-import { KSUID } from "ksuid";
+import KSUID from "ksuid";
 import TitleSection from "../../components/TitleSection";
 import GeneratorDisplay from "../../components/GeneratorDisplay";
 import InfoSection from "../../components/InfoSection";

@@ -48,12 +48,37 @@ export default function GeneratorDisplayWithInput({
     if (!validateInputs()) {
       return;
     }
+    // Clear previous errors
+    setErrors({});
     try {
       setId(generateFn(inputs));
       setCopied(false);
     } catch (error) {
       console.error("Error generating ID:", error);
-      setId("Error generating ID");
+      const errorMessage = error instanceof Error ? error.message : "Error generating ID";
+      
+      // Try to associate error with a specific field
+      // Check if error message mentions any field name or label
+      let errorAssigned = false;
+      for (const field of inputFields) {
+        const fieldNameLower = field.name.toLowerCase();
+        const fieldLabelLower = field.label.toLowerCase();
+        if (
+          errorMessage.toLowerCase().includes(fieldNameLower) ||
+          errorMessage.toLowerCase().includes(fieldLabelLower)
+        ) {
+          setErrors({ [field.name]: errorMessage });
+          errorAssigned = true;
+          break;
+        }
+      }
+      
+      // If we couldn't assign to a specific field, show generic error
+      if (!errorAssigned) {
+        setId("Error generating ID");
+      } else {
+        setId(""); // Clear ID display when there's a field error
+      }
     }
   };
 

@@ -1,23 +1,12 @@
-"use client";
+import type { Metadata } from "next";
+import NanoIDSyncClient from "./NanoIDSyncClient";
 
-import { nanoid } from "nanoid";
-import TitleSection from "../../components/TitleSection";
-import GeneratorDisplay from "../../components/GeneratorDisplay";
-import InfoSection from "../../components/InfoSection";
+export const metadata: Metadata = {
+  title: "NanoID Sync Generator - Synchronous URL-safe ID",
+  description: "Generate NanoID identifiers synchronously instantly. Immediate generation without async operations. Free online NanoID Sync generator.",
+};
 
 export default function NanoIDSyncPage() {
-  return (
-    <>
-      <TitleSection
-        title="NanoID Sync Generator"
-        subtitle="Synchronous URL-safe unique string ID"
-      />
-      <GeneratorDisplay label="Generated NanoID" generateFn={() => nanoid()} />
-      <InfoSection
-        title="About NanoID (Sync)"
-        info="NanoID is a tiny, URL-safe, unique string ID generator. The synchronous version generates IDs immediately without async operations. It's smaller than UUID and uses a larger alphabet to achieve the same level of randomness in a shorter string. Perfect for client-side generation."
-      />
-    </>
-  );
+  return <NanoIDSyncClient />;
 }
 

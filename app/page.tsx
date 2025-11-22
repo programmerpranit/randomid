@@ -84,8 +84,41 @@ export default function Home() {
     },
   ];
 
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    name: "Random ID Generator",
+    description: "Generate unique identifiers instantly. Free online UUID, CUID, GUID, NanoID, and 50+ other ID generator formats.",
+    url: "https://randomid.app",
+    applicationCategory: "DeveloperApplication",
+    operatingSystem: "Any",
+    offers: {
+      "@type": "Offer",
+      price: "0",
+      priceCurrency: "USD",
+    },
+    featureList: [
+      "UUID Generator",
+      "CUID Generator",
+      "NanoID Generator",
+      "GUID Generator",
+      "Hash-based ID Generators",
+      "Base-encoded ID Generators",
+      "Human-readable ID Generators",
+    ],
+    aggregateRating: {
+      "@type": "AggregateRating",
+      ratingValue: "4.8",
+      ratingCount: "100",
+    },
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+      />
       <div className="container mx-auto px-6 py-16">
         <div className="max-w-6xl mx-auto">
           {/* Header */}

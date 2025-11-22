@@ -173,7 +173,7 @@ export default function Navbar() {
               className={cn(
                 "px-4 py-2 text-sm font-light tracking-wider uppercase transition-colors",
                 pathname === "/"
-                  ? "text-orange-400 border-b-2 border-orange-400"
+                  ? "text-orange-400"
                   : "text-gray-300 hover:text-orange-400"
               )}
             >
@@ -199,7 +199,7 @@ export default function Navbar() {
                         className={cn(
                           "px-4 py-2 text-sm font-light tracking-wider uppercase transition-colors",
                           active
-                            ? "text-orange-400 border-b-2 border-orange-400"
+                            ? "text-orange-400"
                             : "text-gray-300 hover:text-orange-400"
                         )}
                       >
@@ -260,7 +260,7 @@ export default function Navbar() {
                   className={cn(
                     "px-4 py-2 text-sm font-light tracking-wider uppercase transition-colors",
                     isActive(item.href)
-                      ? "text-orange-400 border-b-2 border-orange-400"
+                      ? "text-orange-400"
                       : "text-gray-300 hover:text-orange-400"
                   )}
                 >

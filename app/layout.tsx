@@ -86,10 +86,11 @@ export const metadata: Metadata = {
   },
   category: "developer tools",
   icons: {
-    icon: "/logo.png",
-    apple: "/logo.png",
+    icon: [
+      { url: "/favicon.png", type: "image/png" },
+    ],
+    shortcut: ["/favicon.png"], // for Safari / legacy browsers
   },
-  manifest: "/manifest.json",
 };
 
 export const viewport: Viewport = {

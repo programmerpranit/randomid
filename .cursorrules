@@ -1,0 +1,133 @@
+# Cursor Rules for Random ID App
+
+## Tech Stack
+- **Framework**: Next.js with App Router and Server Actions
+- **Database**: PostgreSQL with Prisma ORM
+- **Forms**: React Hook Form with Zod validation
+- **UI Components**: Radix UI with Tailwind CSS
+- **Authentication**: Custom JWT implementation
+- **Package Manager**: Yarn (always use yarn, never npm)
+
+## Feature Development Flow
+
+When creating a new feature, follow this standardized flow:
+
+1. **Create Prisma Schema** in `prisma/schema.prisma`
+2. **Create Zod Schema** in `src/schema/[feature].ts` for validation
+3. **Create Admin CRUD Pages** in `app/admin/[feature]/`:
+   - `page.tsx` - Server-side entry point (authentication, data fetching)
+   - `actions.ts` - Server actions (getAll with pagination, deleteById)
+   - `[Feature]Table.tsx` - Client component with paginated list
+4. **Create Form Pages** in `app/admin/[feature]/[id]/`:
+   - Use `[id]` pattern where `id='new'` for create, otherwise update
+   - `page.tsx` - Server-side entry point
+   - `actions.ts` - Server actions (create, update, getById)
+   - `[Feature]Form.tsx` - Client form component with Zod validation
+
+## Code Conventions
+
+### Server Actions
+- Always return consistent response format: `{ success: boolean, data?: any, error?: string }`
+- Use pagination, search, and sorting for list endpoints
+- Handle errors gracefully with try-catch blocks
+- Use Prisma types generated from schema
+- Example:
+```typescript
+return { success: true, data: result };
+// or
+return { success: false, error: error.message };
+```
+
+### Forms
+- Use shared form components from `src/components/forms/` to avoid repetition
+- Implement dual-purpose forms (create/edit) using ID detection
+- Always validate with Zod schemas before submission
+- Use react-hook-form for form management
+- Pattern for dual-purpose forms:
+```typescript
+const isNew = params.id === 'new';
+if (isNew) {
+  // Create mode
+} else {
+  // Edit mode - fetch existing data
+}
+```
+
+### Data Tables
+- Implement search, sorting, and pagination
+- Use `usePagination` hook for state management
+- Include action buttons for edit/delete operations
+- Example:
+```typescript
+const { page, pageSize, setPage } = usePagination();
+```
+
+### File Naming
+- Components: PascalCase (e.g., `UserForm.tsx`, `JokesTable.tsx`)
+- Server actions: camelCase (e.g., `actions.ts`)
+- Schemas: camelCase (e.g., `user.ts`, `joke.ts`)
+- Pages: lowercase with extensions (e.g., `page.tsx`)
+
+### Type Usage
+- Prefer Prisma-generated types from database schema
+- Use Zod schemas for validation and type checking
+- Almost every table should have a corresponding Zod schema
+
+## Design System
+
+Follow the Trendy Bollywood design system (see DESIGN_GUIDE.md):
+- Use Outfit font family exclusively
+- Primary weight: `font-light` (300) for most text
+- Use `font-extralight` (200) for large display headings
+- Amber color palette for brand elements (amber-800 to amber-900)
+- Stone/Gray palette for neutrals
+- No rounded corners (rectangular shapes)
+- Subtle borders with 50% opacity
+- Generous whitespace and padding
+- Uppercase text with wide tracking (`tracking-wider` or `tracking-widest`)
+
+## Package Management
+- Always use `yarn` for installing dependencies
+- Run `yarn install` to install packages
+- Use `yarn add [package]` for new dependencies
+- Use `yarn add -D [package]` for dev dependencies
+
+## Code Review Checklist
+Before committing, always run:
+- `yarn lint`
+- `yarn typecheck`
+
+## Database Setup
+1. Run migrations: `yarn prisma migrate dev`
+2. Generate client: `yarn prisma generate`
+3. Seed database if needed: `yarn prisma db seed`
+
+## Common Patterns
+
+### Admin CRUD Structure
+```
+app/admin/[feature]/
+  ├── page.tsx          # Server component (auth + data fetching)
+  ├── actions.ts        # Server actions (getAll, deleteById)
+  └── [Feature]Table.tsx # Client component (paginated table)
+
+app/admin/[feature]/[id]/
+  ├── page.tsx          # Server component (auth + initial data)
+  ├── actions.ts        # Server actions (create, update, getById)
+  └── [Feature]Form.tsx # Client component (react-hook-form + zod)
+```
+
+### Generic Components
+- Use shared form components from `src/components/forms/` to avoid repetition
+- Check existing forms for patterns before creating new ones
+
+## Best Practices
+- Always handle authentication in server components
+- Use server actions for all data mutations
+- Implement proper error handling with try-catch
+- Use TypeScript strictly - leverage Prisma and Zod types
+- Follow the established folder structure for consistency
+- Test CRUD operations thoroughly
+- Verify form validation works correctly
+- Check pagination and search functionality
+

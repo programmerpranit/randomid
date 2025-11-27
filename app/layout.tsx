@@ -106,7 +106,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <GoogleTagManager gtmId="G-1CK6RX11B6" />
+      <GoogleTagManager gtmId="GTM-NJPFH3TB" />
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased flex flex-col min-h-screen`}
       >

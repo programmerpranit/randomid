@@ -47,29 +47,7 @@ export const metadata: Metadata = {
     address: false,
     telephone: false,
   },
-  openGraph: {
-    type: "website",
-    locale: "en_US",
-    url: "https://randomid.app",
-    siteName: "Random ID Generator",
-    title: "Random ID Generator - UUID, CUID, GUID, NanoID & More",
-    description: "Generate unique identifiers instantly. Free online UUID, CUID, GUID, NanoID, and 50+ other ID generator formats. Copy to clipboard with one click.",
-    images: [
-      {
-        url: "/logo.png",
-        width: 1200,
-        height: 630,
-        alt: "Random ID Generator Logo",
-      },
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Random ID Generator - UUID, CUID, GUID, NanoID & More",
-    description: "Generate unique identifiers instantly. Free online UUID, CUID, GUID, NanoID, and 50+ other ID generator formats.",
-    images: ["/logo.png"],
-    creator: "@randomidapp",
-  },
+
   robots: {
     index: true,
     follow: true,
@@ -80,9 +58,6 @@ export const metadata: Metadata = {
       "max-image-preview": "large",
       "max-snippet": -1,
     },
-  },
-  alternates: {
-    canonical: "https://randomid.app",
   },
   category: "developer tools",
   icons: {

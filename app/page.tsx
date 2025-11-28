@@ -1,4 +1,37 @@
+import { Metadata } from "next";
 import Link from "next/link";
+
+
+export const metadata: Metadata = {
+  title: "Random ID Generator",
+  description: "Generate unique identifiers instantly. Free online UUID, CUID, NanoID, and 50+ other ID generator formats.",
+  alternates: {
+    canonical: "https://randomid.app",
+  },
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: "https://randomid.app",
+    siteName: "Random ID Generator",
+    title: "Random ID Generator - UUID, CUID, GUID, NanoID & More",
+    description: "Generate unique identifiers instantly. Free online UUID, CUID, GUID, NanoID, and 50+ other ID generator formats. Copy to clipboard with one click.",
+    images: [
+      {
+        url: "/logo.png",
+        width: 1200,
+        height: 630,
+        alt: "Random ID Generator Logo",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Random ID Generator - UUID, CUID, GUID, NanoID & More",
+    description: "Generate unique identifiers instantly. Free online UUID, CUID, GUID, NanoID, and 50+ other ID generator formats.",
+    images: ["/logo.png"],
+    creator: "@randomidapp",
+  },
+};
 
 export default function Home() {
   const generatorCategories = [

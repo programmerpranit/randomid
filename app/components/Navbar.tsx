@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState, useRef, useEffect } from "react";
 import { cn } from "@/lib/utils";
+import { generatorCategories } from "../lib/generators";
 
 type NavItem = {
   name: string;
@@ -38,102 +39,19 @@ export default function Navbar() {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  const navItems: NavItem[] = [
-    {
-      name: "UUID",
-      href: "/uuid/v4",
+  const navItems: NavItem[] = generatorCategories.map((category) => {
+    const defaultHref = category.defaultHref ?? category.generators[0].href;
+    return {
+      name: category.navLabel ?? category.name,
+      href: defaultHref,
       hasDropdown: true,
-      defaultHref: "/uuid/v4",
-      children: [
-        { name: "Version 1", href: "/uuid/v1" },
-        { name: "Version 3", href: "/uuid/v3" },
-        { name: "Version 4", href: "/uuid/v4" },
-        { name: "Version 5", href: "/uuid/v5" },
-        { name: "Version 7", href: "/uuid/v7" },
-        { name: "Version 8", href: "/uuid/v8" },
-      ],
-    },
-    {
-      name: "CUID",
-      href: "/cuid",
-      hasDropdown: true,
-      defaultHref: "/cuid",
-      children: [
-        { name: "CUID", href: "/cuid" },
-        { name: "CUID2", href: "/cuid2" },
-      ],
-    },
-    {
-      name: "NanoID",
-      href: "/nanoid-sync",
-      hasDropdown: true,
-      defaultHref: "/nanoid-sync",
-      children: [
-        { name: "Sync", href: "/nanoid-sync" },
-        { name: "Async", href: "/nanoid-async" },
-        { name: "Custom", href: "/nanoid-custom" },
-      ],
-    },
-    {
-      name: "Hash",
-      href: "/sha256",
-      hasDropdown: true,
-      defaultHref: "/sha256",
-      children: [
-        { name: "SHA-1", href: "/sha1" },
-        { name: "SHA-256", href: "/sha256" },
-        { name: "SHA-512", href: "/sha512" },
-        { name: "Blake2", href: "/blake2" },
-        { name: "MD5", href: "/md5" },
-      ],
-    },
-    {
-      name: "Base",
-      href: "/base64",
-      hasDropdown: true,
-      defaultHref: "/base64",
-      children: [
-        { name: "Hex", href: "/hex" },
-        { name: "Base32", href: "/base32" },
-        { name: "Base36", href: "/base36" },
-        { name: "Base58", href: "/base58" },
-        { name: "Base62", href: "/base62" },
-        { name: "Base64", href: "/base64" },
-        { name: "Base64URL", href: "/base64url" },
-      ],
-    },
-    {
-      name: "Human",
-      href: "/petname",
-      hasDropdown: true,
-      defaultHref: "/petname",
-      children: [
-        { name: "Petname", href: "/petname" },
-        { name: "Haikunator", href: "/haikunator" },
-        { name: "2-Word", href: "/word2" },
-        { name: "3-Word", href: "/word3" },
-      ],
-    },
-    {
-      name: "Others",
-      href: "/guid",
-      hasDropdown: true,
-      defaultHref: "/guid",
-      children: [
-        { name: "GUID", href: "/guid" },
-        { name: "ULID", href: "/ulid" },
-        { name: "KSUID", href: "/ksuid" },
-        { name: "Snowflake", href: "/snowflake" },
-        { name: "ShortUUID", href: "/shortuuid" },
-        { name: "ShortID", href: "/shortid" },
-        { name: "Crypto", href: "/crypto-random" },
-        { name: "Timestamp", href: "/random-timestamp" },
-        { name: "Sequence", href: "/random-sequence" },
-        { name: "Prefixed", href: "/prefixed" },
-        { name: "Suffixed", href: "/suffixed" },
-      ],
-    },
-  ];
+      defaultHref,
+      children: category.generators.map((generator) => ({
+        name: generator.navName ?? generator.name,
+        href: generator.href,
+      })),
+    };
+  });
 
   const isActive = (href: string) => {
     if (href === "/") {

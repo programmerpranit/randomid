@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import Link from "next/link";
-
+import { generatorCategories } from "./lib/generators";
 
 export const metadata: Metadata = {
   title: "Random ID Generator",
@@ -34,89 +34,6 @@ export const metadata: Metadata = {
 };
 
 export default function Home() {
-  const generatorCategories = [
-    {
-      name: "UUID",
-      description: "Universally Unique Identifiers",
-      generators: [
-        { name: "UUID v1", href: "/uuid/v1", description: "Time-based UUID" },
-        { name: "UUID v3", href: "/uuid/v3", description: "Name-based (MD5)" },
-        { name: "UUID v4", href: "/uuid/v4", description: "Random UUID" },
-        { name: "UUID v5", href: "/uuid/v5", description: "Name-based (SHA-1)" },
-        { name: "UUID v7", href: "/uuid/v7", description: "Time-ordered UUID" },
-        { name: "UUID v8", href: "/uuid/v8", description: "Custom UUID" },
-      ],
-    },
-    {
-      name: "CUID",
-      description: "Collision-resistant Unique Identifiers",
-      generators: [
-        { name: "CUID", href: "/cuid", description: "Collision-resistant ID" },
-        { name: "CUID2", href: "/cuid2", description: "Next-gen CUID" },
-      ],
-    },
-    {
-      name: "NanoID",
-      description: "Small, URL-safe unique string IDs",
-      generators: [
-        { name: "NanoID Sync", href: "/nanoid-sync", description: "Synchronous generation" },
-        { name: "NanoID Async", href: "/nanoid-async", description: "Asynchronous generation" },
-        { name: "NanoID Custom", href: "/nanoid-custom", description: "Custom alphabet & length" },
-      ],
-    },
-    {
-      name: "Hash-based",
-      description: "Hash-based random identifiers",
-      generators: [
-        { name: "SHA-1", href: "/sha1", description: "SHA-1 hash ID" },
-        { name: "SHA-256", href: "/sha256", description: "SHA-256 hash ID" },
-        { name: "SHA-512", href: "/sha512", description: "SHA-512 hash ID" },
-        { name: "Blake2", href: "/blake2", description: "Blake2 hash ID" },
-        { name: "MD5", href: "/md5", description: "MD5 hash ID" },
-      ],
-    },
-    {
-      name: "Base-encoded",
-      description: "Base-encoded random identifiers",
-      generators: [
-        { name: "Hex", href: "/hex", description: "Hexadecimal ID" },
-        { name: "Base32", href: "/base32", description: "Base32 encoded ID" },
-        { name: "Base36", href: "/base36", description: "Base36 encoded ID" },
-        { name: "Base58", href: "/base58", description: "Base58 encoded ID" },
-        { name: "Base62", href: "/base62", description: "Base62 encoded ID" },
-        { name: "Base64", href: "/base64", description: "Base64 encoded ID" },
-        { name: "Base64URL", href: "/base64url", description: "Base64URL encoded ID" },
-      ],
-    },
-    {
-      name: "Human-readable",
-      description: "Human-readable identifier formats",
-      generators: [
-        { name: "Petname", href: "/petname", description: "Pet name identifier" },
-        { name: "Haikunator", href: "/haikunator", description: "Haiku-style names" },
-        { name: "2-Word", href: "/word2", description: "Two-word combination" },
-        { name: "3-Word", href: "/word3", description: "Three-word combination" },
-      ],
-    },
-    {
-      name: "Other Formats",
-      description: "Additional unique identifier formats",
-      generators: [
-        { name: "GUID", href: "/guid", description: "Globally Unique Identifier" },
-        { name: "ULID", href: "/ulid", description: "Lexicographically sortable ID" },
-        { name: "KSUID", href: "/ksuid", description: "K-Sortable Unique ID" },
-        { name: "Snowflake", href: "/snowflake", description: "Twitter Snowflake ID" },
-        { name: "ShortUUID", href: "/shortuuid", description: "Short UUID format" },
-        { name: "ShortID", href: "/shortid", description: "Short unique identifier" },
-        { name: "Crypto Random", href: "/crypto-random", description: "Cryptographic random bytes" },
-        { name: "Timestamp", href: "/random-timestamp", description: "Random timestamp ID" },
-        { name: "Sequence", href: "/random-sequence", description: "Random sequence ID" },
-        { name: "Prefixed", href: "/prefixed", description: "Prefixed identifier" },
-        { name: "Suffixed", href: "/suffixed", description: "Suffixed identifier" },
-      ],
-    },
-  ];
-
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "WebApplication",
@@ -170,7 +87,7 @@ export default function Home() {
           {/* Generator Categories */}
           <div className="space-y-12">
             {generatorCategories.map((category) => (
-              <div key={category.name}>
+              <div key={category.key}>
                 <div className="mb-6">
                   <h2 className="text-2xl md:text-3xl font-light text-white mb-2 tracking-tight">
                     {category.name}

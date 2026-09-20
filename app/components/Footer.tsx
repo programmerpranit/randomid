@@ -87,6 +87,12 @@ export default function Footer() {
                 © {currentYear} Random ID Generator. All rights reserved.
               </p>
               <div className="flex items-center gap-6">
+                <Link
+                  href="/privacy"
+                  className="text-xs text-gray-500 font-light tracking-wider uppercase hover:text-orange-400 transition-colors"
+                >
+                  Privacy Policy
+                </Link>
                 <p className="text-xs text-gray-500 font-light tracking-wider uppercase">
                   Fast • Reliable • Open Source
                 </p>
